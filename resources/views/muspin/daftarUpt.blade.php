@@ -40,7 +40,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($upt as $index => $item)
+                    @forelse ($upts as $index => $item)
                     <tr class="hover:bg-gray-50">
                         <td class="py-3 px-4 border-b">{{ $index + 1 }}</td>
                         <td class="py-3 px-4 border-b">{{ $item->namaUpt }}</td>

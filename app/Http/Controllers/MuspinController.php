@@ -15,14 +15,15 @@ class MuspinController extends Controller
 
     public function listUpt(Request $request)
     {
-        $upt=Upt::all();
+        $upt = Upt::all();
         $query = Upt::query();
         if ($request->has('search')) {
-            $search=$request->input('search');
-            $query->where('namaUpt','LIKE',"%{search}%");
+            $search = $request->input('search');
+            $query->where('namaUpt', 'LIKE', "%{$search}%");
         }
-        $upts=$query->orderBy('namaUpt')->get();
-        return view('muspin.daftarUpt',compact('upts','upt'));
+        $upts = $query->orderBy('namaUpt')->get();
+
+        return view('muspin.daftarUpt', compact('upts', 'upt'));
     }
 
     public function tambahUpt()
