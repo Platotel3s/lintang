@@ -108,11 +108,11 @@ class MuspinController extends Controller
         return redirect()->route('index.jenisLaporan');
     }
 
-    public function hapuJenisLaporan(string $id)
+    public function hapusJenisLaporan(string $id)
     {
         $pilihJenisLaporan = JenisLaporan::findOrFail($id);
         $pilihJenisLaporan->delete();
 
-        return view('index.jenisLaporan');
+        return redirect()->route('index.jenisLaporan');
     }
 }
