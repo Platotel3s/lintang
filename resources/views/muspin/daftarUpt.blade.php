@@ -9,6 +9,14 @@
             <h2 class="text-2xl font-bold text-gray-800">
                 <i class="fa-solid fa-list text-blue-600 mr-2"></i> Daftar UPT
             </h2>
+            <form action="{{ route('list.upt') }}" method="GET" class="flex items-center space-x-2">
+                <input type="text" name="search" placeholder="Cari nama UPT..." value="{{ request('search') }}"
+                    class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-200">
+                <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg">
+                    Cari
+                </button>
+            </form>
             <a href="{{ route('tambah.upt') }}"
                 class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
                 <i class="fa-solid fa-plus mr-2"></i>Tambah UPT

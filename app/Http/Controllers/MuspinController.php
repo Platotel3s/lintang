@@ -13,11 +13,16 @@ class MuspinController extends Controller
         return view('muspin.dashboard');
     }
 
-    public function listUpt()
+    public function listUpt(Request $request)
     {
-        $upt = Upt::all();
-
-        return view('muspin.daftarUpt', compact('upt'));
+        $upt=Upt::all();
+        $query = Upt::query();
+        if ($request->has('search')) {
+            $search=$request->input('search');
+            $query->where('namaUpt','LIKE',"%{search}%");
+        }
+        $upts=$query->orderBy('namaUpt')->get();
+        return view('muspin.daftarUpt',compact('upts','upt'));
     }
 
     public function tambahUpt()

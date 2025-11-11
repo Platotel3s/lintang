@@ -37,7 +37,6 @@ class LaporanController extends Controller
             'upt_id' => Auth::id(),
             'jenis_laporan_id' => $request->jenis_laporan_id,
             'dokumen' => $path,
-            'status' => null,
         ]);
 
         return redirect()->route('laporan.index')->with('success', 'Laporan berhasil dikirim,menunggu verifikasi');
