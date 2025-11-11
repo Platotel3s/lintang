@@ -19,9 +19,17 @@ class MuspinController extends Controller
         $query = Upt::query();
         if ($request->has('search')) {
             $search = $request->input('search');
-            $query->where('namaUpt', 'LIKE', "%{$search}%");
+            $query->where(function ($q) use ($search) {
+                $q->where('namaUpt', 'LIKE', "%{$search}%")
+                    ->orWhere('alamat', 'LIKE', "%{$search}%");
+            });
         }
         $upts = $query->orderBy('namaUpt')->get();
+        // if ($request->ajax()) {
+        //     return response()->json([
+        //         'upts'=>$upts
+        //     ]);
+        // }
 
         return view('muspin.daftarUpt', compact('upts', 'upt'));
     }

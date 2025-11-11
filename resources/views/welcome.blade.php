@@ -7,23 +7,29 @@
     <title>Selamat Datang</title>
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('icons/css/all.min.css') }}">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 </head>
 
-<body
-    class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-100 via-white to-blue-50 text-gray-800 bg-animated">
-
-    <div class="text-center px-6 animate-fadeUp">
+<body class="min-h-screen flex flex-col justify-center items-center text-gray-800 relative">
+    <div class="background-carousel">
+        <img src="{{ asset('images/c1.jpeg') }}" class="active" alt="bg1">
+        <img src="{{ asset('images/c2.jpeg') }}" alt="bg2">
+        <img src="{{ asset('images/c3.jpeg') }}" alt="bg3">
+        <img src="{{ asset('images/c4.jpeg') }}" alt="bg4">
+        <img src="{{ asset('images/c5.jpeg') }}" alt="bg5">
+        <img src="{{ asset('images/c6.jpeg') }}" alt="bg6">
+    </div>
+    <div class="overlay"></div>
+    <div class="text-center px-6 z-10">
         <h1 class="text-5xl font-extrabold mb-4 text-slate-800">
             Selamat Datang di <span class="text-blue-600">Sistem Laporan UPT</span>
         </h1>
-        <p class="text-gray-600 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
+        <p class="text-gray-700 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
             Sistem ini membantu setiap UPT dalam mengirim dan memverifikasi laporan secara cepat, aman, dan efisien.
         </p>
 
         @guest
-        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeUp" style="animation-delay: 0.3s;">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('loginPage') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
                 <i class="fa-solid fa-right-to-bracket mr-2"></i> Masuk
@@ -33,14 +39,10 @@
                 <i class="fa-solid fa-user-plus mr-2"></i> Daftar
             </a>
         </div>
-        <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent"
-            speed="2" style="width: 250px; height: 250px; margin: 0 auto;" loop autoplay>
-        </lottie-player>
-
         @endguest
 
         @auth
-        <div class="mt-8 animate-fadeUp" style="animation-delay: 0.3s;">
+        <div class="mt-8">
             @if (Auth::user()->role === 'muspin')
             <a href="{{ route('dashboard.muspin') }}"
                 class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
@@ -56,10 +58,11 @@
         @endauth
     </div>
 
-    <footer class="mt-16 text-sm text-gray-500 animate-fadeUp" style="animation-delay: 0.6s;">
+    <footer class="mt-16 text-sm text-gray-500 z-10">
         &copy; {{ date('Y') }} Dinas Komunikasi & Informatika — Semua Hak Dilindungi.
     </footer>
 
+    <script src="{{ asset('js/welcome.js') }}"></script>
 </body>
 
 </html>
