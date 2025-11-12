@@ -37,7 +37,16 @@
             <input type="file" name="dokumen" accept="application/pdf" required
                 class="mt-1 w-full border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500">
         </div>
-
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Triwulan</label>
+            <select name="periode_id"
+                class="mt-1 w-full border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Pilih Triwulan --</option>
+                @foreach ($periodes as $periode)
+                <option value="{{$periode->id}}">{{$periode->nama}}</option>
+                @endforeach
+            </select>
+        </div>
         <div class="flex justify-end">
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                 Kirim Laporan

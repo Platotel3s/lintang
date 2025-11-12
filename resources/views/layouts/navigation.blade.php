@@ -66,6 +66,11 @@
             <span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">{{ $pendingCount }}</span>
             @endif
         </a>
+        <a href="{{ route('index.periode')}}"
+            class="block px-4 py-2 rounded-lg hover:bg-slate-700 transition flex items-center justify-between">
+            <span><i class="fa-solid fa-calendar mr-2"></i>Daftar Triwulan</span>
+        </a>
+
         @elseif (Auth::user()->role === 'upt')
         <a href="{{ route('dashboard.upt') }}"
             class="block px-4 py-2 rounded-lg hover:bg-slate-700 transition {{ request()->routeIs('dashboard.upt') ? 'bg-slate-800' : '' }}">

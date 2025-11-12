@@ -18,6 +18,7 @@
                 <th class="py-3 px-4 text-left">Jenis Laporan</th>
                 <th class="py-3 px-4 text-left">UPT</th>
                 <th class="py-3 px-4 text-left">Dokumen</th>
+                <th class="py-3 px-4 text-left">Triwulan</th>
                 <th class="py-3 px-4 text-center">Status</th>
                 <th class="py-3 px-4 text-center">Aksi</th>
             </tr>
@@ -31,6 +32,7 @@
                     <a href="{{ asset('storage/' . $laporan->dokumen) }}" target="_blank"
                         class="text-blue-600 hover:underline">Lihat PDF</a>
                 </td>
+                <td class="py-3 px-4">{{$laporan->periode->nama ?? '-'}}</td>
                 <td class="py-3 px-4 text-center">
                     @if ($laporan->status == 'pending')
                     <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full">Menunggu</span>

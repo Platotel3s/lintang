@@ -22,6 +22,7 @@
             <tr>
                 <th class="py-3 px-4 text-left">Jenis Laporan</th>
                 <th class="py-3 px-4 text-left">Nama UPT</th>
+                <th class="py-3 px-4 text-left">Triwulan</th>
                 <th class="py-3 px-4 text-center">Status</th>
                 <th class="py-3 px-4 text-center">Aksi</th>
             </tr>
@@ -31,6 +32,7 @@
             <tr class="border-t hover:bg-gray-50">
                 <td class="py-3 px-4">{{ $laporan->jenisLaporan->jenisLaporan }}</td>
                 <td class="py-3 px-4">{{ $laporan->upt->namaUpt }}</td>
+                <td class="py-3 px-4">{{$laporan->periode->nama ?? '-'}}</td>
                 <td class="py-3 px-4 text-center">
                     @if ($laporan->status == 'pending')
                     <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full">Menunggu</span>

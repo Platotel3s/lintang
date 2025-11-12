@@ -13,8 +13,14 @@ class Laporan extends Model
         'upt_id',
         'jenis_laporan_id',
         'dokumen',
+        'periode_id',
         'status',
     ];
+
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class);
+    }
 
     public function upt()
     {

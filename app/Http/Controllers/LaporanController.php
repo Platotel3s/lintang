@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisLaporan;
 use App\Models\Laporan;
+use App\Models\Periode;
 use App\Models\Upt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,9 @@ class LaporanController extends Controller
     public function index()
     {
         $laporans = Laporan::where('upt_id', Auth::id())->latest()->get();
+        $periodes = Periode::all();
 
-        return view('upt.laporan.index', compact('laporans'));
+        return view('upt.laporan.index', compact('laporans', 'periodes'));
     }
 
     public function create()
@@ -22,8 +24,9 @@ class LaporanController extends Controller
         $jenisLaporan = JenisLaporan::all();
         $upt = Auth::user();
         $jenisUpt = Upt::all();
+        $periodes = Periode::all();
 
-        return view('upt.laporan.create', compact('jenisLaporan', 'upt', 'jenisUpt'));
+        return view('upt.laporan.create', compact('jenisLaporan', 'upt', 'jenisUpt', 'periodes'));
     }
 
     public function store(Request $request)
@@ -31,11 +34,13 @@ class LaporanController extends Controller
         $request->validate([
             'jenis_laporan_id' => 'required|exists:jenisLaporans,id',
             'dokumen' => 'required|mimes:pdf|max:5120',
+            'periode_id'=>'required|exists:periode_laporan,id',
         ]);
         $path = $request->file('dokumen')->store('dokumen_laporan', 'public');
         Laporan::create([
             'upt_id' => Auth::id(),
             'jenis_laporan_id' => $request->jenis_laporan_id,
+            'periode_id'=>$request->periode_id,
             'dokumen' => $path,
         ]);
 
