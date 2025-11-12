@@ -32,8 +32,6 @@
                 @endif
             </div>
         </div>
-
-        {{-- PDF viewer card --}}
         <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
                 <div class="flex items-center gap-3">
@@ -46,13 +44,10 @@
                 </div>
 
                 <div class="flex items-center gap-3">
-                    {{-- Tombol download --}}
                     <a href="{{ asset('storage/' . $laporan->dokumen) }}" download
                         class="inline-flex items-center px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm transition">
                         <i class="fa-solid fa-download mr-2"></i> Download
                     </a>
-
-                    {{-- Jika user adalah muspin, tampilkan tombol verifikasi singkat --}}
                     @if (Auth::check() && Auth::user()->role === 'muspin')
                     @if ($laporan->status === 'pending')
                     <form action="{{ route('muspin.verifikasi.update', $laporan->id) }}" method="POST"
@@ -75,18 +70,14 @@
                         </button>
                     </form>
                     @else
-                    {{-- sudah diverifikasi --}}
                     <span class="text-sm text-gray-500 italic">Sudah diverifikasi</span>
                     @endif
                     @endif
                 </div>
             </div>
-
-            {{-- Embedded PDF (tidak membuka di tab baru) --}}
             <div class="w-full h-[80vh] md:h-[70vh] lg:h-[80vh] bg-gray-100">
                 <object data="{{ asset('storage/' . $laporan->dokumen) }}" type="application/pdf" width="100%"
                     height="100%">
-                    {{-- Fallback jika browser tidak mendukung embed PDF --}}
                     <div class="p-6 text-center">
                         <p class="text-gray-700 mb-4">Browser Anda tidak mendukung tampilan PDF inline.</p>
                         <a href="{{ asset('storage/' . $laporan->dokumen) }}" target="_blank" rel="noopener noreferrer"
@@ -97,16 +88,12 @@
                 </object>
             </div>
         </div>
-
-        {{-- Keterangan / Catatan (opsional) --}}
         @if ($laporan->status === 'ditolak' && $laporan->keterangan)
         <div class="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4">
             <p class="font-medium">Alasan penolakan:</p>
             <p class="text-sm mt-1">{{ $laporan->keterangan }}</p>
         </div>
         @endif
-
-        {{-- Tombol kembali --}}
         <div class="flex justify-end">
             <a href="{{ url()->previous() ?? route('laporan.index') }}"
                 class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition">

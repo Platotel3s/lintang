@@ -88,6 +88,6 @@ class AuthController extends Controller
         ]);
         $user->update($request->only(['name', 'email']));
 
-        return redirect()->route('dashboard.muspin')->with('success', 'Berhasil memperbarui profil');
+        return back()->with('success', 'Berhasil memperbarui profil');
     }
 }
