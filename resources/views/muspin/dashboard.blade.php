@@ -31,8 +31,6 @@
                     }}</p>
             </div>
         </div>
-
-        {{-- Daftar laporan terbaru --}}
         <div class="bg-white rounded-xl shadow p-6">
             <h2 class="text-xl font-semibold mb-4 text-gray-800">Laporan Terbaru</h2>
             <table class="min-w-full text-left border border-gray-300 rounded-lg overflow-hidden">
