@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
+    <link rel="icon" type="image/png"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Logo_of_the_Ministry_of_Transportation_of_the_Republic_of_Indonesia.svg/250px-Logo_of_the_Ministry_of_Transportation_of_the_Republic_of_Indonesia.svg.png">
+
     @vite('resources/css/app.css')
 </head>
 
@@ -31,6 +34,8 @@
                 <input type="password" name="password" id="password" required
                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="Masukkan password">
+                <input type="checkbox" name="showPw" id="showPw" onclick="showPassword()">
+                <label for="showPw">Show Password</label>
             </div>
             <div>
                 <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900">Konfirmasi
@@ -38,6 +43,8 @@
                 <input type="password" name="password_confirmation" id="password_confirmation" required
                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="Konfirmasi password">
+                <input type="checkbox" name="showPwConfirmCheck" id="showPwConfirmCheck" onclick="showPwConfirm()">
+                <label for="showPwConfirmCheck">Show Password</label>
             </div>
             <button type="submit"
                 class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200">
@@ -49,6 +56,7 @@
             </p>
         </form>
     </div>
+    <script src="{{ asset('js/register.js') }}"></script>
 </body>
 
 </html>

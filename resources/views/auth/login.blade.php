@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Page</title>
+    <title>Login Page</title>
+    <link rel="icon" type="image/png"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Logo_of_the_Ministry_of_Transportation_of_the_Republic_of_Indonesia.svg/250px-Logo_of_the_Ministry_of_Transportation_of_the_Republic_of_Indonesia.svg.png">
     @vite('resources/css/app.css')
 </head>
 
@@ -25,6 +27,8 @@
                 <input type="password" name="password" id="password" required
                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="Masukkan password">
+                <input type="checkbox" name="showPw" id="showPw">
+                <label for="showPw">Show Password</label>
             </div>
             <button type="submit"
                 class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200">
@@ -37,6 +41,16 @@
             </p>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const pw = document.getElementById("password");
+            const toggle = document.getElementById("showPw");
+
+            toggle.addEventListener("change", () => {
+                pw.type = toggle.checked ? "text" : "password";
+            });
+        });
+    </script>
 </body>
 
 </html>
