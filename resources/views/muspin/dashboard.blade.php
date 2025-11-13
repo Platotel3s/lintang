@@ -9,8 +9,6 @@
         <p class="text-gray-600 mb-6">
             Anda login sebagai <span class="font-semibold text-indigo-600">{{ Auth::user()->role }}</span>.
         </p>
-
-        {{-- Statistik utama --}}
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-500">
                 <h2 class="text-sm text-gray-500 uppercase">Total UPT</h2>
@@ -18,7 +16,8 @@
             </div>
             <div class="bg-white rounded-xl shadow p-6 border-l-4 border-yellow-500">
                 <h2 class="text-sm text-gray-500 uppercase">Laporan Pending</h2>
-                <p class="text-2xl font-bold text-gray-900">{{ \App\Models\Laporan::whereNull('status')->count() }}</p>
+                <p class="text-2xl font-bold text-gray-900">{{
+                    \App\Models\Laporan::whereNull('status')->orWhere('status','pending')->count() }}</p>
             </div>
             <div class="bg-white rounded-xl shadow p-6 border-l-4 border-green-500">
                 <h2 class="text-sm text-gray-500 uppercase">Laporan Diterima</h2>
