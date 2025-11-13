@@ -49,7 +49,7 @@
                 <i class="fa-solid fa-gauge mr-2"></i> Ke Dashboard Muspin
             </a>
             @elseif (Auth::user()->role === 'upt')
-            <a href="{{ route('upt.dashboard') }}"
+            <a href="{{ route('dashboard.upt') }}"
                 class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
                 <i class="fa-solid fa-gauge mr-2"></i> Ke Dashboard UPT
             </a>
