@@ -19,9 +19,13 @@
             @csrf
             <div>
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama UPT</label>
-                <input type="text" name="name" id="name" required
-                    class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="Masukkan nama UPT">
+                <select name="upt_id" id="upt_id" required
+                    class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="">-- Pilih UPT --</option>
+                    @foreach ($upts as $upt)
+                        <option value="{{$upt->id}}">{{$upt->namaUpt}}</option>
+                    @endforeach
+                </select>
             </div>
             <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>

@@ -34,13 +34,13 @@ class LaporanController extends Controller
         $request->validate([
             'jenis_laporan_id' => 'required|exists:jenisLaporans,id',
             'dokumen' => 'required|mimes:pdf|max:5120',
-            'periode_id'=>'required|exists:periode_laporan,id',
+            'periode_id' => 'required|exists:periode_laporan,id',
         ]);
         $path = $request->file('dokumen')->store('dokumen_laporan', 'public');
         Laporan::create([
             'upt_id' => Auth::id(),
             'jenis_laporan_id' => $request->jenis_laporan_id,
-            'periode_id'=>$request->periode_id,
+            'periode_id' => $request->periode_id,
             'dokumen' => $path,
         ]);
 

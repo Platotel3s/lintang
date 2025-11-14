@@ -22,17 +22,6 @@
         </div>
 
         <div>
-            <label class="block text-sm font-medium text-gray-700">Nama UPT</label>
-            <select name="upt_id"
-                class="mt-1 w-full border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500">
-                <option value="">-- Pilih Nama UPT --</option>
-                @foreach ($jenisUpt as $namaUpt)
-                <option value="{{$namaUpt->id}}">{{$namaUpt->namaUpt}}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div>
             <label class="block text-sm font-medium text-gray-700">Upload Dokumen (PDF)</label>
             <input type="file" name="dokumen" accept="application/pdf" required
                 class="mt-1 w-full border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500">

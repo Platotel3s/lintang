@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Upt;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,18 +12,22 @@ class AuthController extends Controller
 {
     public function regisPage()
     {
-        return view('auth.register');
+        $upts = Upt::all();
+
+        return view('auth.register', compact('upts'));
     }
 
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'string',
-            'email' => 'email',
+            'upt_id' => 'required|exists:upts,id|unique:users,upt_id',
+            'email' => 'email|unique:users,email',
             'password' => 'string|confirmed',
         ]);
+        $upt=Upt::find($request->upt_id);
         $akun = User::create([
-            'name' => $request->name,
+            'upt_id' => $upt->id,
+            'name'=>$upt->namaUpt,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

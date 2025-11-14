@@ -3,6 +3,15 @@
 @section('title', 'Dashboard UPT')
 
 @section('content')
+@php
+$userId = Auth::id();
+$total = \App\Models\Laporan::where('upt_id', $userId)->count();
+$pending = \App\Models\Laporan::where('upt_id', $userId)
+->where(function($q){
+$q->whereNull('status')->orWhere('status', 'pending');
+})->count();
+$diterima = \App\Models\Laporan::where('upt_id', $userId)->where('status','diterima')->count();
+@endphp
 <div class="p-8 bg-gray-100 min-h-screen">
     <div class="max-w-6xl mx-auto">
         <h1 class="text-3xl font-bold mb-4 text-gray-800">Halo, {{ Auth::user()->name }}</h1>
@@ -10,38 +19,28 @@
             Anda login sebagai <span class="font-semibold text-indigo-600">{{ Auth::user()->role }}</span>.
         </p>
 
-        {{-- Statistik pribadi --}}
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-500">
                 <h2 class="text-sm text-gray-500 uppercase">Total Laporan</h2>
-                <p class="text-2xl font-bold text-gray-900">
-                    {{ \App\Models\Laporan::where('upt_id', Auth::id())->count() }}
-                </p>
+                <p class="text-2xl font-bold text-gray-900">{{ $total }}</p>
             </div>
             <div class="bg-white rounded-xl shadow p-6 border-l-4 border-yellow-500">
                 <h2 class="text-sm text-gray-500 uppercase">Menunggu Verifikasi</h2>
-                <p class="text-2xl font-bold text-gray-900">
-                    {{ \App\Models\Laporan::where('upt_id',
-                    Auth::id())->whereNull('status')->orWhere('status','pending')->count() }}
-                </p>
+                <p class="text-2xl font-bold text-gray-900">{{ $pending }}</p>
             </div>
             <div class="bg-white rounded-xl shadow p-6 border-l-4 border-green-500">
                 <h2 class="text-sm text-gray-500 uppercase">Diterima</h2>
-                <p class="text-2xl font-bold text-gray-900">
-                    {{ \App\Models\Laporan::where('upt_id', Auth::id())->where('status','diterima')->count() }}
-                </p>
+                <p class="text-2xl font-bold text-gray-900">{{ $diterima }}</p>
             </div>
         </div>
 
-        {{-- Tombol Buat Laporan --}}
         <div class="mb-8">
             <a href="{{ route('laporan.create') }}"
                 class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow">
                 + Buat Laporan Baru
             </a>
         </div>
-
-        {{-- Daftar laporan milik UPT --}}
         <div class="bg-white rounded-xl shadow p-6">
             <h2 class="text-xl font-semibold mb-4 text-gray-800">Laporan Saya</h2>
             <table class="min-w-full text-left border border-gray-300 rounded-lg overflow-hidden">

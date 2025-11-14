@@ -12,4 +12,7 @@ class Upt extends Model
         'namaUpt',
         'alamat',
     ];
+    public function users(){
+        return $this->hasMany(User::class);
+    }
 }

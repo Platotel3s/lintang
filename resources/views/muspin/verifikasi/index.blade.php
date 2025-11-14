@@ -19,6 +19,7 @@
                 <th class="py-3 px-4 text-left">UPT</th>
                 <th class="py-3 px-4 text-left">Dokumen</th>
                 <th class="py-3 px-4 text-left">Triwulan</th>
+                <th class="py-3 px-4 text-left">Tanggal</th>
                 <th class="py-3 px-4 text-center">Status</th>
                 <th class="py-3 px-4 text-center">Aksi</th>
             </tr>
@@ -27,12 +28,13 @@
             @forelse ($laporans as $laporan)
             <tr class="border-t hover:bg-gray-50">
                 <td class="py-3 px-4">{{ $laporan->jenisLaporan->jenisLaporan }}</td>
-                <td class="py-3 px-4">{{ $laporan->upt->namaUpt }}</td>
+                <td class="py-3 px-4">{{ $laporan->upt->namaUpt ?? '-' }}</td>
                 <td class="py-3 px-4">
                     <a href="{{ asset('storage/' . $laporan->dokumen) }}" target="_blank"
                         class="text-blue-600 hover:underline">Lihat PDF</a>
                 </td>
                 <td class="py-3 px-4">{{$laporan->periode->nama ?? '-'}}</td>
+                <td class="py-3 px-4">{{$laporan->created_at}}</td>
                 <td class="py-3 px-4 text-center">
                     @if ($laporan->status == 'pending')
                     <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full">Menunggu</span>
