@@ -34,10 +34,10 @@
                 class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
                 <i class="fa-solid fa-right-to-bracket mr-2"></i> Masuk
             </a>
-            <a href="{{ route('regisPage') }}"
+            <!-- <a href="{{ route('regisPage') }}"
                 class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
                 <i class="fa-solid fa-user-plus mr-2"></i> Daftar
-            </a>
+            </a> -->
         </div>
         @endguest
 

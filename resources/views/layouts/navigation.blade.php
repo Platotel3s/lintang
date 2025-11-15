@@ -70,6 +70,10 @@
             class="block px-4 py-2 rounded-lg hover:bg-slate-700 transition flex items-center justify-between">
             <span><i class="fa-solid fa-calendar mr-2"></i>Daftar Triwulan</span>
         </a>
+        <a href="{{route('regisPage')}}"
+            class="block px-4 py-2 rounded-lg hover:bg-slate-700 transition flex items-center justify-between">
+            <span><i class="fas fa-user-circle mr-2"></i>Buat akun UPT</span>
+        </a>
 
         @elseif (Auth::user()->role === 'upt')
         <a href="{{ route('dashboard.upt') }}"
@@ -83,7 +87,7 @@
         </a>
 
         <a href="{{ route('laporan.index') }}"
-            class="block px-4 py-2 rounded-lg hover:bg-slate-700 transition {{ request()->routeIs('laporan.*') ? 'bg-slate-800' : '' }}">
+            class="block px-4 py-2 rounded-lg hover:bg-slate-700 transition {{ request()->routeIs('laporan.index') ? 'bg-slate-800' : '' }}">
             <i class="fa-solid fa-list mr-2"></i> Daftar Laporan
         </a>
         @endif

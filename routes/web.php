@@ -14,14 +14,16 @@ Route::get('/testing', function () {
     return view('test');
 });
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/register/page', 'regisPage')->name('regisPage');
-    Route::post('/register', 'register')->name('register');
     Route::get('login/page', 'loginPage')->name('loginPage');
     Route::post('/login', 'login')->name('login');
     Route::post('/logout', 'logout')->name('logout');
 });
 
 Route::middleware(['auth', 'role:muspin'])->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/register/page', 'regisPage')->name('regisPage');
+        Route::post('/register', 'register')->name('register');
+    });
     Route::controller(MuspinController::class)->group(function () {
         Route::get('/dashboard/muspin', 'dashboard')->name('dashboard.muspin');
         Route::post('/tambah/upt', 'insertUpt')->name('insert.upt');

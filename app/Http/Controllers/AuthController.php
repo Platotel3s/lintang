@@ -24,16 +24,16 @@ class AuthController extends Controller
             'email' => 'email|unique:users,email',
             'password' => 'string|confirmed',
         ]);
-        $upt=Upt::find($request->upt_id);
-        $akun = User::create([
+        $upt = Upt::find($request->upt_id);
+        User::create([
             'upt_id' => $upt->id,
-            'name'=>$upt->namaUpt,
+            'name' => $upt->namaUpt,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        Auth::login($akun);
+        // Auth::login($akun);
 
-        return redirect()->route('loginPage');
+        return redirect()->route('regisPage')->with('success', 'Berhasil membuat akun');
     }
 
     public function loginPage()
